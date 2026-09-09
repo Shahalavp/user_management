@@ -25,6 +25,12 @@ function Navbar() {
 
             <Link to="/profile">Profile</Link>
 
+            {user.role === "admin" && (
+              <Link to="/admin">
+                Admin Dashboard
+              </Link>
+            )}
+
             <button
               onClick={handleLogout}
               className="rounded bg-white px-3 py-1 text-blue-600"

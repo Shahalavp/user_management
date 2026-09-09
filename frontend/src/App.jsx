@@ -8,6 +8,9 @@ import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminRoute from "./components/AdminRoute";
+
 function App() {
   return (
     <BrowserRouter>
@@ -23,8 +26,14 @@ function App() {
         <Route element={<ProtectedRoute />}>
 
           <Route path="/home" element={<HomePage />} />
-
           <Route path="/profile" element={<ProfilePage />} />
+
+        </Route>
+
+        {/* Admin routes */}
+        <Route element={<AdminRoute />}>
+
+          <Route path="/admin" element={<AdminDashboard />} />
 
         </Route>
 

@@ -3,16 +3,27 @@ import api from "../services/api";
 
 function ProfilePage() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const getProfile = async () => {
       try {
+        setLoading(true);
+        setError("");
+
         const response = await api.get("/user/profile");
 
         setUser(response.data.user);
 
       } catch (error) {
         console.log(error);
+        setError(
+          error.response?.data?.message ||
+          "Unable to load profile"
+        );
+      } finally {
+        setLoading(false);
       }
     };
 
