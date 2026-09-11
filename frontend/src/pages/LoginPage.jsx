@@ -59,30 +59,32 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-white px-4">
+      <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up { animation: fadeInUp 0.35s ease-out; }
+      `}</style>
 
-      <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-lg">
-
-        <h1 className="text-center text-3xl font-bold text-gray-800">
+      <div className="fade-in-up w-full max-w-sm rounded-lg border border-gray-200 p-8">
+        <h1 className="text-center text-xl font-semibold text-gray-900">
           Login
         </h1>
 
-        <p className="mt-2 text-center text-gray-500">
+        <p className="mt-1 text-center text-sm text-gray-500">
           Login to your account
         </p>
 
         {/* Error message */}
         {error && (
-          <div className="mt-6 rounded-lg bg-red-100 px-4 py-3 text-sm text-red-700">
+          <div className="mt-6 rounded-md border border-red-200 bg-red-50 px-4 py-2.5 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <form
-          onSubmit={handleSubmit}
-          className="mt-6 space-y-4"
-        >
-
+        <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
           {/* Email */}
           <div>
             <label
@@ -100,7 +102,7 @@ function LoginPage() {
               onChange={handleChange}
               placeholder="Enter your email"
               disabled={loading}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 transition-colors focus:border-gray-900 focus:outline-none disabled:bg-gray-50"
             />
           </div>
 
@@ -121,7 +123,7 @@ function LoginPage() {
               onChange={handleChange}
               placeholder="Enter your password"
               disabled={loading}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 transition-colors focus:border-gray-900 focus:outline-none disabled:bg-gray-50"
             />
           </div>
 
@@ -129,24 +131,22 @@ function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-blue-600 py-2.5 font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-2 rounded-md bg-gray-900 py-2.5 text-sm font-medium text-white transition-all hover:bg-black active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "Logging in…" : "Login"}
           </button>
-
         </form>
 
         {/* Signup link */}
-        <p className="mt-6 text-center text-sm text-gray-600">
+        <p className="mt-6 text-center text-sm text-gray-500">
           Don't have an account?{" "}
           <Link
             to="/signup"
-            className="font-medium text-blue-600 hover:underline"
+            className="font-medium text-gray-900 underline underline-offset-2 hover:text-gray-600"
           >
             Signup
           </Link>
         </p>
-
       </div>
     </div>
   );
